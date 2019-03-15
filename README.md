@@ -13,7 +13,7 @@
 
 ## Prerequisites
 
-You need to install [MongoDB](https://docs.mongodb.com/manual/administration/install-community/).
+[NodeJS](https://nodejs.org/en/download/) and [MongoDB](https://docs.mongodb.com/manual/administration/install-community/).
 
 ## Features
 
@@ -32,8 +32,6 @@ You need to install [MongoDB](https://docs.mongodb.com/manual/administration/ins
 1. install the dependencies using `npm install` or `npm i`
 
 2. Start the app using `npm start`
-
-3. After that, go to: `http://localhost:3000/user`
 
 ### Directory Structure
 

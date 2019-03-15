@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
 import * as jwt from "jsonwebtoken";
 const bcrypt = require("bcryptjs");
-const saltRounds = 10;
+import environment from "../config/environment";
 
 const userSchema = new Schema(
   {
@@ -28,7 +28,7 @@ const userSchema = new Schema(
 );
 
 userSchema.methods.setPassword = (password: string) => {
-  const salt = bcrypt.genSaltSync(saltRounds);
+  const salt = bcrypt.genSaltSync(environment.SALT_ROUNDS);
   const hash = bcrypt.hashSync(password, salt);
   return hash;
 };
@@ -46,8 +46,8 @@ userSchema.methods.generateJWT = function() {
       email: this.email,
       id: this._id
     },
-    "secret",
-    { expiresIn: "24h" }
+    environment.JWT_ENCRYPTION,
+    { expiresIn: environment.JWT_EXPIRATION }
   );
 };
 

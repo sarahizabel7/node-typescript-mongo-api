@@ -1,11 +1,11 @@
-const db_url = process.env.MONGODB_URI || "mongodb://localhost:27017/example_db";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 export default {
-  server: {
-    port: process.env.PORT || 3000 
-  },
-  db: {
-    url: db_url 
-  },
-  secret: 'secret'
+  PORT: process.env.PORT || 3000,
+  MONGODB_URI:
+    process.env.MONGODB_URI || "mongodb://localhost:27017/example_db",
+  JWT_ENCRYPTION: process.env.JWT_ENCRYPTION || "secret",
+  JWT_EXPIRATION: process.env.JWT_EXPIRATION || "1h",
+  SALT_ROUNDS: process.env.SALT_ROUNDS || 10
 };

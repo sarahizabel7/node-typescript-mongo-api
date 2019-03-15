@@ -1,4 +1,5 @@
 import * as jwt from "express-jwt";
+import environment from "../config/environment";
 
 const getTokenFromHeaders = (req: any) => {
   const {
@@ -12,12 +13,12 @@ const getTokenFromHeaders = (req: any) => {
 
 export const auth = {
   required: jwt({
-    secret: "secret",
+    secret: environment.JWT_ENCRYPTION,
     userProperty: "payload",
     getToken: getTokenFromHeaders
   }),
   optional: jwt({
-    secret: "secret",
+    secret: environment.JWT_ENCRYPTION,
     userProperty: "payload",
     getToken: getTokenFromHeaders,
     credentialsRequired: false

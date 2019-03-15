@@ -31,6 +31,8 @@
 
 1. install the dependencies using `npm install` or `npm i`
 
+2. Rename the file `.env.example` to `.env`, and configure the file `environment.ts` located in `src/config`
+
 2. Start the app using `npm start`
 
 ### Directory Structure

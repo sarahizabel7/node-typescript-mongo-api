@@ -1,0 +1,50 @@
+{
+  "name": "node-typescript-mongo-api",
+  "version": "1.0.0",
+  "description": "Rest API built with Typescript, NodeJS, Express and MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build && node dist/server.js",
+    "dev": "concurrently \"tsc -w\" \"nodemon --inspect dist/server.js\"",
+    "build": "tsc",
+    "compile": "tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarahizabel7/node-typescript-mongo-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sarahizabel7/node-typescript-mongo-api/issues"
+  },
+  "homepage": "https://github.com/sarahizabel7/node-typescript-mongo-api#readme",
+  "dependencies": {
+    "@types/body-parser": "^1.17.0",
+    "@types/cors": "^2.8.4",
+    "@types/express": "^4.16.0",
+    "@types/mongoose": "^5.2.11",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.0.1",
+    "cors": "^2.8.4",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "express-jwt": "^5.3.1",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.2.9",
+    "nodemon": "^1.18.4",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/express-jwt": "0.0.40",
+    "@types/jsonwebtoken": "^8.3.0",
+    "@types/mongodb": "^3.1.4",
+    "@types/node": "^10.9.4",
+    "@types/passport": "^0.4.7",
+    "@types/passport-local": "^1.0.33",
+    "typescript": "^3.0.3"
+  }
+}

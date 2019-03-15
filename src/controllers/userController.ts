@@ -4,25 +4,34 @@ import { IUserModel } from "../interfaces/Models";
 import * as passport from "passport";
 
 export default class UserController {
-  public authenticate = async (req: Request, res: Response, next: any): Promise<any> => {
-    const { body: { email, password } } = req;
+  public authenticate = async (
+    req: Request,
+    res: Response,
+    next: any
+  ): Promise<any> => {
+    const {
+      body: { email, password }
+    } = req;
     if (!email) {
       return res.status(200).send({
-        status: "error", 
+        status: "error",
         data: { error: "Email is required." }
       });
     }
-  
+
     if (!password) {
       return res.status(200).send({
-        status: "error", 
+        status: "error",
         data: { error: "Password is required." }
       });
     }
-  
-    return passport.authenticate("local", { session: false }, (err, passportUser, info) => {
+
+    return passport.authenticate(
+      "local",
+      { session: false },
+      (err, passportUser, info) => {
         if (err) return next(err);
-  
+
         if (passportUser) {
           const user = passportUser;
           user.token = user.generateJWT();
@@ -31,79 +40,86 @@ export default class UserController {
             data: user.toAuthJSON()
           });
         }
-  
+
         return res.status(400).send({
-          status: "error", 
+          status: "error",
           data: { error: info }
         });
-      })(req, res, next);
+      }
+    )(req, res, next);
   };
-  
+
   public registerUser = async (req: Request, res: Response) => {
     const user = req.body;
     const finalUser: IUserModel = new models.User(user);
     finalUser.password = finalUser.setPassword(user.password);
     finalUser
       .save()
-      .then(() => res.status(201).send({
-        status: "ok", 
-        data: finalUser.toAuthJSON()
-      }))
+      .then(() =>
+        res.status(201).send({
+          status: "ok",
+          data: finalUser.toAuthJSON()
+        })
+      )
       .catch((err: any) => {
         console.log(err.toString());
         return res.status(500).send({
-          status: "error", 
+          status: "error",
           data: { error: err.toString() }
         });
       });
   };
-  
+
   public updateUser = async (req: Request, res: Response): Promise<any> => {
     const { name, email, password } = req.body;
     try {
-      const userUpdated = await models.User.findByIdAndUpdate(req.params.id, {
-        $set: {
-          name,
-          email,
-          password
-        }
-      }, { new: true });
+      const userUpdated = await models.User.findByIdAndUpdate(
+        req.params.id,
+        {
+          $set: {
+            name,
+            email,
+            password
+          }
+        },
+        { new: true }
+      );
       if (!userUpdated) {
         return res.status(404).send({
-          status: "error", 
+          status: "error",
           data: { error: "User not found." }
         });
       }
       res.status(200).send({
-        status: "ok", 
+        status: "ok",
         data: userUpdated
       });
     } catch (err) {
       console.log(err.toString());
       return res.status(500).send({
-        status: "error", 
+        status: "error",
         data: { error: err.toString() }
       });
     }
   };
-  
+
   public getUser = async (req: Request, res: Response): Promise<any> => {
     try {
       const user = await models.User.findById(req.params.id, { password: 0 });
       if (!user) {
         return res.status(404).send({
-          status: "error", 
+          status: "error",
           data: { error: "User not found." }
         });
       }
       return res.status(200).send({
-        status: "ok", 
+        status: "ok",
         data: user
       });
     } catch (err) {
       console.log(err.toString());
       return res.status(500).send({
-        status: "error", 
+        status: "error",
         data: { error: err.toString() }
       });
     }

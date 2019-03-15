@@ -1,5 +1,5 @@
-import * as mongoose from 'mongoose';
-import environment from './environment';
+import * as mongoose from "mongoose";
+import environment from "./environment";
 
 mongoose.connect(environment.db.url, {
   useNewUrlParser: true,

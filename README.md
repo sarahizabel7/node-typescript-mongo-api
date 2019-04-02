@@ -1,15 +1,4 @@
-# RESTful API using Node.js, Express, TypeScript & Mongoose 
-
-## Table of Contents
-
-- [Prerequisites](#prerequisites)
-- [Features](#features)
-- [Getting Started](#getting-started)
-  - [Installation](#installation)
-  - [Directory Structure](#directory-structure)
-  - [Available Routes](#available-routes)
-  - [Available Scripts](#available-scripts)
-- [License](#license)
+# RESTful API using Node.js, Express, TypeScript & Mongoose
 
 ## Prerequisites
 

@@ -65,47 +65,51 @@ export default class UserController {
         console.log(err.toString());
         return res.status(500).send({
           status: "error",
-          data: { error: err.toString() }
+          data: { error: "Error to create user." }
         });
       });
   };
 
   public updateUser = async (req: Request, res: Response): Promise<any> => {
     const { name, email, password } = req.body;
-    try {
-      const userUpdated = await models.User.findByIdAndUpdate(
-        req.params.id,
-        {
-          $set: {
-            name,
-            email,
-            password
-          }
-        },
-        { new: true }
-      );
-      if (!userUpdated) {
-        return res.status(404).send({
-          status: "error",
-          data: { error: "User not found." }
+    models.User.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: {
+          name,
+          email,
+          password
+        }
+      },
+      { new: true },
+      (err, userUpdated) => {
+        if (err) {
+          return res.status(500).send({
+            status: "error",
+            data: { error: "Error to update user." }
+          });
+        }
+        if (!userUpdated) {
+          return res.status(404).send({
+            status: "error",
+            data: { error: "User not found." }
+          });
+        }
+        res.status(200).send({
+          status: "ok",
+          data: userUpdated
         });
-      }
-      res.status(200).send({
-        status: "ok",
-        data: userUpdated
       });
-    } catch (err) {
-      console.log(err.toString());
-      return res.status(500).send({
-        status: "error",
-        data: { error: err.toString() }
-      });
-    }
   };
 
   public getUser = async (req: Request, res: Response): Promise<any> => {
-    try {
-      const user = await models.User.findById(req.params.id, { password: 0 });
+    models.User.findById(req.params.id, { password: 0 }, (err, user) => {
+      if (err) {
+        return res.status(500).send({
+          status: "error",
+          data: { error: err.toString() }
+        });
+      }
       if (!user) {
         return res.status(404).send({
           status: "error",
@@ -116,12 +120,6 @@ export default class UserController {
         status: "ok",
         data: user
       });
-    } catch (err) {
-      console.log(err.toString());
-      return res.status(500).send({
-        status: "error",
-        data: { error: err.toString() }
-      });
-    }
+    });
   };
 }

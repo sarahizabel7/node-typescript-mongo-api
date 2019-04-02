@@ -57,12 +57,10 @@
 
 | Method   | Resource        | Description                                                                                                                                 |
 | :------- | :-------------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
-| `POST`   | `/users`     | Create a new user in the DB. You need to specify in the body the following attributes: name, email & password.                        |
+| `POST`   | `/user`     | Create a new user in the DB. You need to specify in the body the following attributes: name, email & password.                        |
 | `POST`   | `/authenticate` | Sign in with the email & password. If it's successful, then generates a token.                                                            |
-| `GET`    | `/users`        | Returns the collection of users present in the DB.                                                                                        |
-| `GET`    | `/users/:id`    | It returns the specified id user. You need to specify the token in the header with the following format: `Authorization: Bearer your-token` |
-| `PUT`    | `/users/:id`    | Updates an already created user in the DB                                                                                                   |
-| `DELETE` | `/users/:id`    | Deletes a user from the DB                                                                                                                  |
+| `GET`    | `/user/:id`    | It returns the specified id user. You need to specify the token in the header with the following format: `Authorization: Bearer your-token` |
+| `PUT`    | `/user/:id`    | Updates an already created user in the DB                                                                                                   |
 
 ### Available scripts
 

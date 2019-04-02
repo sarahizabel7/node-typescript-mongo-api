@@ -60,7 +60,7 @@
 | `POST`   | `/user`     | Create a new user in the DB. You need to specify in the body the following attributes: name, email & password.                        |
 | `POST`   | `/authenticate` | Sign in with the email & password. If it's successful, then generates a token.                                                            |
 | `GET`    | `/user/:id`    | It returns the specified id user. You need to specify the token in the header with the following format: `Authorization: Token your-token` |
-| `PUT`    | `/user/:id`    | Updates an already created user in the DB                                                                                                   |
+| `PUT`    | `/user/:id`    | Updates an already created user in the DB.                                                                                                   |
 
 ### Available scripts
 

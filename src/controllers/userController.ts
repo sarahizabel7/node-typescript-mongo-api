@@ -71,35 +71,48 @@ export default class UserController {
   };
 
   public updateUser = async (req: Request, res: Response): Promise<any> => {
-    const { name, email, password } = req.body;
-    models.User.findByIdAndUpdate(
-      req.params.id,
-      {
-        $set: {
-          name,
-          email,
-          password
-        }
-      },
-      { new: true },
-      (err, userUpdated) => {
-        if (err) {
-          return res.status(500).send({
-            status: "error",
-            data: { error: "Error to update user." }
-          });
-        }
-        if (!userUpdated) {
-          return res.status(404).send({
-            status: "error",
-            data: { error: "User not found." }
-          });
-        }
-        res.status(200).send({
-          status: "ok",
-          data: userUpdated
-        });
-      });
+    try {
+			const user = req.body;
+			const userFound = await models.User.findById(req.params.id);
+			if (userFound) {
+				if (user.password !== undefined) {
+					user.password = await userFound.setPassword(user.password);
+				}
+				models.User.findOneAndUpdate(
+					{ _id: req.params.id },
+					{ ...user },
+					{ new: true },
+					(err, userUpdated) => {
+            if (err) {
+              return res.status(500).send({
+                status: 'error',
+                data: { error: "Error to update user." }
+              });
+            }
+						if (!userUpdated) {
+							return res.status(404).send({
+								status: 'error',
+								data: { error: 'User not found.' }
+							});
+						}
+						res.status(200).send({
+							status: 'ok',
+							data: userUpdated
+						});
+					}
+				)
+			} else {
+				return res.status(404).send({
+					status: 'error',
+					data: { error: 'User not found.' }
+				});
+			}
+		} catch (err) {
+			return res.status(500).send({
+				status: 'error',
+				data: { error: "Error to update user." }
+			});
+		}
   };
 
   public getUser = async (req: Request, res: Response): Promise<any> => {

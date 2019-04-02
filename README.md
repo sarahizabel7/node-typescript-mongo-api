@@ -66,8 +66,7 @@
 
 - `start` - Run the transpiled app
 - `build` - Transpile TypeScript to ES6,
-- `dev` - To run the app without transpile to ES6,
-- `compile` - Remove dist, node_modules, coverage folders,
+- `dev` - To run the app without transpile to ES6
 
 ## License
 

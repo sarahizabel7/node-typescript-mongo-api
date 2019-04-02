@@ -51,23 +51,37 @@ export default class UserController {
 
   public registerUser = async (req: Request, res: Response) => {
     const user = req.body;
-    const finalUser: IUserModel = new models.User(user);
-    finalUser.password = finalUser.setPassword(user.password);
-    finalUser
-      .save()
-      .then(() =>
-        res.status(201).send({
-          status: "ok",
-          data: finalUser.toAuthJSON()
-        })
-      )
-      .catch((err: any) => {
-        console.log(err.toString());
+    models.User.findOne({email: user.email}, (err, userFounded) => {
+      if (err) {
         return res.status(500).send({
           status: "error",
           data: { error: "Error to create user." }
         });
-      });
+      }
+      if (userFounded) {
+        return res.status(400).send({
+          status: "error",
+          data: { error: "User already exists." }
+        });
+      }
+      const finalUser: IUserModel = new models.User(user);
+      finalUser.password = finalUser.setPassword(user.password);
+      finalUser
+        .save()
+        .then(() =>
+          res.status(201).send({
+            status: "ok",
+            data: finalUser.toAuthJSON()
+          })
+        )
+        .catch((err: any) => {
+          console.log(err.toString());
+          return res.status(500).send({
+            status: "error",
+            data: { error: "Error to create user." }
+          });
+        });
+    });
   };
 
   public updateUser = async (req: Request, res: Response): Promise<any> => {

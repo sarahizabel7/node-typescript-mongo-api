@@ -9,19 +9,20 @@ passport.use(
       usernameField: "email",
       passwordField: "password"
     },
-    (email: string, password: string, done: any) => {
-      models.User.findOne({ email }, function(err, user) {
-        if (err) {
-          return done(err);
-        }
+    async (email: string, password: string, done: any) => {
+      try {
+        const user = await models.User.findOne({ email }).select("+password");
         if (!user) {
-          return done(null, false, { message: "Incorrect email." });
+          return done(null, false, { message: "Incorrect username." });
         }
         if (!user.validatePassword(password, user.password)) {
           return done(null, false, { message: "Incorrect password." });
         }
         return done(null, user);
-      }).catch(done);
+      } catch (err) {
+        done(err);
+      }
     }
   )
 );
+

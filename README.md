@@ -65,7 +65,7 @@
 ### Available scripts
 
 - `start` - Run the transpiled app
-- `build` - Transpile TypeScript to ES6,
+- `build` - Transpile TypeScript to ES6
 - `dev` - Transpile TypeScript to ES6 and run the transpiled app with Nodemon
 
 ## License

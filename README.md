@@ -1,15 +1,4 @@
-# RESTful API using Node.js, Express, TypeScript & Mongoose 
-
-## Table of Contents
-
-- [Prerequisites](#prerequisites)
-- [Features](#features)
-- [Getting Started](#getting-started)
-  - [Installation](#installation)
-  - [Directory Structure](#directory-structure)
-  - [Available Routes](#available-routes)
-  - [Available Scripts](#available-scripts)
-- [License](#license)
+# RESTful API using Node.js, Express, TypeScript & Mongoose
 
 ## Prerequisites
 
@@ -68,19 +57,16 @@
 
 | Method   | Resource        | Description                                                                                                                                 |
 | :------- | :-------------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
-| `POST`   | `/users`     | Create a new user in the DB. You need to specify in the body the following attributes: name, email & password.                        |
+| `POST`   | `/user`     | Create a new user in the DB. You need to specify in the body the following attributes: name, email & password.                        |
 | `POST`   | `/authenticate` | Sign in with the email & password. If it's successful, then generates a token.                                                            |
-| `GET`    | `/users`        | Returns the collection of users present in the DB.                                                                                        |
-| `GET`    | `/users/:id`    | It returns the specified id user. You need to specify the token in the header with the following format: `Authorization: Bearer your-token` |
-| `PUT`    | `/users/:id`    | Updates an already created user in the DB                                                                                                   |
-| `DELETE` | `/users/:id`    | Deletes a user from the DB                                                                                                                  |
+| `GET`    | `/user/:id`    | It returns the specified id user. You need to specify the token in the header with the following format: `Authorization: Token your-token` |
+| `PUT`    | `/user/:id`    | Updates an already created user in the DB.                                                                                                   |
 
 ### Available scripts
 
 - `start` - Run the transpiled app
-- `build` - Transpile TypeScript to ES6,
-- `dev` - To run the app without transpile to ES6,
-- `compile` - Remove dist, node_modules, coverage folders,
+- `build` - Transpile TypeScript to ES6
+- `dev` - Transpile TypeScript to ES6 and run the transpiled app with Nodemon
 
 ## License
 

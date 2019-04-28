@@ -74,5 +74,34 @@ MIT © Sarah Pfaffenzeller
 
 
 ```javascript
-{ "some": "json" }
+{ 
+    "name": "Matheus Medeiros Gentil",
+    "age": 25,
+    "gender": "male",
+    "phone": {
+        "region": "55",
+        "number": "48996071785"
+    },
+    "address": {
+        "country": "Brazil",
+        "state": "Santa Catarina",
+        "city": "Florianópolis",
+        "district": "Trindade",
+        "street": "Luiz Oscar de Carvalho 75"
+    },
+    "graduation": {
+        "name": "Information Systems",
+        "university": "UFSC",
+        "startDate": "2013-08-01",
+        "endDate": "2019-12-10"
+    },
+    "softSkills": ["Leadership", "Team Work", "Proactivity", "Self-taught", "Communicative"],
+    "techSkills": {
+        "front": ["HTML", "CSS", "React", "Redux", "Webpack", "SemanticUI", "Materialize"],
+        "back": ["NodeJS", "MongoDB", "PostgreSQL"],
+        "mixed": ["Javascript", "Typescript", "GIT", "Deploy", "AWS"]
+    },
+    "hobbies": ["Play video games", "Watch movies and series", "Read books", "Play poker", "Watch NBA games"],
+    "aspirations": ["Generate value for society", "Have my own company"]
+}
 ```

@@ -71,3 +71,8 @@
 ## License
 
 MIT © Sarah Pfaffenzeller
+
+
+```javascript
+{ "some": "json" }
+```
